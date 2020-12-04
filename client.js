@@ -11,7 +11,11 @@ init()
 class Menu {
     topLevelItems = []
     secondaryDetails = []
-    constructor() {
+    holder = null
+    detail = null
+    constructor(holder_id, detail_id) {
+        this.holder = holder_id
+        this.detail = detail_id
         // Assume age is zero, start with the basic options. 
         this.topLevelItems = ["Population", "Resources"]
         this.secondaryDetails = [
@@ -32,26 +36,27 @@ class Menu {
             }
         ]
     }
-    getTopElements() {
+    updateHtmlTopLevel() {
         let elements = []
-        this.topLevelItems.forEach(item => {
-            let element = document.createElement("ul")
-            element.innerHTML = item
-            element.onclick = this.buttonClicked
+        let ul = document.getElementById(this.holder)
+        while (ul.firstChild){
+            ul.removeChild(ul.firstChild)
+        }
+        for (let i = 0; i < this.topLevelItems.length; i++){
+            let element = document.createElement("li")
+            ul.appendChild(element)
+            element.innerHTML = this.topLevelItems[i]
+            element.addEventListener('click',(e)=>{
+                this.getDetails(this.secondaryDetails[i].title)
+            })
             elements.push(element)
-        })
+        }
         return elements
     }
-    buttonClicked(e){
-        console.log(e)
-    }
-    getDetails(name) {
-        let index = this.topLevelItems.indexOf(name)
-        if (index == -1) {
-            return None
-        }
-        let item = this.secondaryDetails[index]
-        let element = document.createElement("div")
-        element.innerHTML
+    getDetails(details) {
+        let detail = document.getElementById(this.detail)
+        detail.innerHTML = details
     }
 }
+
+let myMenu = new Menu("main_menu", "detail");
