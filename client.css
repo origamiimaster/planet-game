@@ -1,0 +1,30 @@
+canvas{
+    background-color: darkblue;
+    float: left;
+}
+*{
+    margin: 0;
+}
+.floating_sidebar{
+    background-color: red;
+    height: 100vh;
+    width: 200px;
+    float: right;
+}
+.orange_menu_items{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.orange_menu_items > li{
+    background-color: orange;
+    width: 80%;
+    position: relative;
+    left: 10%;
+    margin: 0 0 10px 0
+}
+.filler{
+    height: 100px;
+    font-size: x-large;
+    text-align: center;
+}
